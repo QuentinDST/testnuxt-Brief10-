@@ -1,9 +1,9 @@
 <template>
     <body class="no-footer-shadow">
-        <div class="container">
+        <div v-if="character" class="container">
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-12 mt-5 text-center">
-                    <h1>Character</h1>
+                    <h1>{{ character.name }}</h1>
                 </div>
             </div>
 
@@ -12,7 +12,7 @@
                     <div class="identity--title">
                         <H2>IDENTITE</H2>
                     </div>
-                    <div class="identity--content">
+                   <div class="identity--content">
                         <p class="identity--content--p">Gender : {{ character.gender }}</p>
                         <p class="identity--content--p">Height : {{ character.height }} cm</p>
                         <p class="identity--content--p">Mass : {{ character.mass }} kg</p>
@@ -20,7 +20,7 @@
                         <p class="identity--content--p">Birth Year : {{ character.birth_year }}</p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-4 p-5 justify-content-enter image">
+                <div class="col-sm-12 col-md-12 col-lg-4 p-5 justify-content-center image">
                     <img src="~/assets/images/hobiwan.jpg" alt="personnage">
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4  films">
@@ -44,18 +44,23 @@ export default {
   data() {
     return {
       character: {}
-        }
-        console.log(character);
+    }
   },
-  async fetch() {
-    const characterId = this.$route.params.id; // récupère l'id depuis la route
-    const response = await fetch(`https://swapi.dev/api/people/${characterId}/`);
-    const character = await response.json();
 
-      this.character = character;
-      console.log(character);
+  async fetch() {
+    const slug = this.$route.params.slug;
+    const name = slug.replace(/-/g, ' '); // Remplace les tirets par des espaces
+    const characterData = await fetch(`https://swapi.dev/api/people/?search=${name}`).then(res => res.json())
+
+    if (characterData.count > 0) {
+      this.character = characterData.results[0];
+      this.character.name = this.character.name.replace(/-/g, ' ');
+    } else {
+      console.log('Aucun personnage trouvé pour cette recherche');
+    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -152,6 +157,10 @@ H1, H2{
   }
   .films{
     margin-right: 40px;
+  }
+
+  .image{
+    align-items: center;
   }
 }
 

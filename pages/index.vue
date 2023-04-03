@@ -14,7 +14,7 @@ export default {
   <main>
     <div class="container">
       <div class="row text-center mt-5 homepage">
-        <div class="col-12 homepage--content">
+        <div class="col-12 mt-5 homepage--content">
           <H2>FIND ALL YOUR STAR WARS FAVORITES CHARACTERS HERE</H2>
           <div class="button-container">
             <Btn class="btn-listing" url="/characters/" text="EXPLORE" />

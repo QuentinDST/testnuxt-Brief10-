@@ -55,4 +55,14 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+
+ /*  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'character',
+        path: '/characters/:slug',
+        component: '~/pages/characters/_single.vue'
+      })
+    }
+  } */
 }

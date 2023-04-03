@@ -4,20 +4,34 @@
             <img src="~/assets/images/hobiwan.jpg" alt="personnage">
         </div>
         <div class="name">
-            <NuxtLink to="/characters/single">{{ character.name }}</NuxtLink>
-            <NuxtLink to="/characters/single">{{ character.gender }}</NuxtLink>
+            <NuxtLink :to="url">{{character.name}}</NuxtLink>
         </div>
     </div>
 </template>
 
 <script>
+ import slugify from 'slugify' 
+
 export default {
-  props: {
-    character: {
-      type: Object,
-      required: true
-    }
-  }
+    data() {
+        return {
+            url: `/characters/${slugify(this.character.name, { lower: true })}`
+        }
+    },
+    props: {
+        character: {
+            type: Object,
+            required: true
+        },
+    },  
+    computed: {
+       slug() {
+         return slugify(this.character.name, { lower: true })
+       }
+    }, 
+    mounted() {
+        console.log(this.character.name);
+     }
 };
 </script>
 
@@ -40,7 +54,7 @@ export default {
 .image {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
+    border-radius: 100%;
     overflow: hidden;
     margin-bottom: 20px;
     box-shadow: 0px 0px 4px #fff, 0px 0px 8px #fff, 0px 0px 10px #fff, 0px 0px 12px #ffdd00, 0px 0px 15px #ffdd00, 0px 0px 20px #e7b811, 0px 0px 25px #e7b811, 0px 0px 30px #fff;

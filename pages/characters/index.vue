@@ -2,16 +2,16 @@
     <main>
         <div class="container">
             <div class="row text-center mt-5 justify-content-center listing--page">
-                <div class="col-12 mb-5">
+                <div class="col-12 mt-5 mb-5">
                     <H1>CHARACTERS STAR WARS</H1>
                 </div>
-                <div class="col-12 d-flex justify-content-center">
+                <div class="col-12 mb-5 d-flex justify-content-center">
                   <Btn class="btn-listing" url="/contact" text="FILTERR BY CATEGORY" />
                 </div>
             </div>
 
             <div class="row mt-5">
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap character-box">
                   <character v-for="character in characters" :key="character.name"  :character="character"/>
                 </div>
             </div>
@@ -25,7 +25,7 @@ import Character from "@/components/Character.vue";
 export default {
   data() {
     return {
-      characters: []
+      characters: [],
     };
   },
   async fetch() { //fetch pour récup tous les characters de l'API
@@ -39,7 +39,11 @@ export default {
     }
 
     this.characters = allCharacters; // on injecte ensuite les données du tableau dans "characters"
-    console.log(this.characters);
+  },
+  computed: {
+    limitedCharacters() {
+      return this.characters.slice(0, 10);
+    }
   }
 };
 </script>
@@ -59,5 +63,22 @@ H1{
   width: 350px;
 }
 
+
+.character-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.character-box > * {
+  flex: 0 0 calc(25% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .character-box > * {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
 
 </style>
