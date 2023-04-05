@@ -10,6 +10,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://code.jquery.com/jquery-3.6.0.min.js' }
     ]
   },
 
@@ -56,13 +59,4 @@ export default {
   build: {
   },
 
- /*  router: {
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'character',
-        path: '/characters/:slug',
-        component: '~/pages/characters/_single.vue'
-      })
-    }
-  } */
 }

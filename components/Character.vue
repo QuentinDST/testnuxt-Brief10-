@@ -1,7 +1,6 @@
 <template>
     <div class="personnage mx-auto mb-5">
-        <div class="image">
-            <img src="~/assets/images/hobiwan.jpg" alt="personnage">
+        <div class="image" :style="{ backgroundImage: `url(${characterImageUrl})` }">
         </div>
         <div class="name">
             <NuxtLink :to="url">{{character.name}}</NuxtLink>
@@ -18,17 +17,31 @@ export default {
             url: `/characters/${slugify(this.character.name, { lower: true })}`
         }
     },
+
     props: {
         character: {
             type: Object,
             required: true
         },
     },  
+
     computed: {
        slug() {
          return slugify(this.character.name, { lower: true })
-       }
+        },
+        characterImageUrl() {
+            return `https://starwars-visualguide.com/assets/img/characters/${this.getCharacterId()}.jpg`;
+        }
     }, 
+
+    methods: {
+        getCharacterId() {
+            // Extrait l'ID du personnage à partir de l'URL de l'API
+            const characterUrlParts = this.character.url.split('/');
+            return characterUrlParts[characterUrlParts.length - 2];
+        }
+    },
+
     mounted() {
         console.log(this.character.name);
      }
@@ -52,8 +65,10 @@ export default {
 }
 
 .image {
-    width: 150px;
-    height: 150px;
+    background-position: center center;
+    background-size: cover;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     overflow: hidden;
     margin-bottom: 20px;
@@ -66,7 +81,7 @@ export default {
 .image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    
 }
 
 .name{
@@ -74,8 +89,8 @@ export default {
 }
 
 a{
-    font-size: 22px;
-    font-family: 'Poller One';
+    font-size: 30px;
+    font-family: 'Lab Sans Pro', sans-serif;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -86,5 +101,6 @@ a{
 a:hover {
     border-bottom: 3px solid rgb(231, 181, 41);
     padding-bottom: 3px;
+    text-decoration: none;
 }
 </style>

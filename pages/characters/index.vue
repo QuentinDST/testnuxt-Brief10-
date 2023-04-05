@@ -39,11 +39,6 @@ export default {
     }
 
     this.characters = allCharacters; // on injecte ensuite les données du tableau dans "characters"
-  },
-  computed: {
-    limitedCharacters() {
-      return this.characters.slice(0, 10);
-    }
   }
 };
 </script>

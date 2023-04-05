@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4 p-5 justify-content-center image">
-                    <img src="~/assets/images/hobiwan.jpg" alt="personnage">
+                  <img :src="characterImageUrl" alt="personnage">
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4  films">
                     <div class="text-right">
@@ -43,22 +43,33 @@
 export default {
   data() {
     return {
-      character: {}
+      character: {},
+      characterImageUrl: null
     }
   },
 
   async fetch() {
     const slug = this.$route.params.slug;
     const name = slug.replace(/-/g, ' '); // Remplace les tirets par des espaces
+    
     const characterData = await fetch(`https://swapi.dev/api/people/?search=${name}`).then(res => res.json())
 
     if (characterData.count > 0) {
       this.character = characterData.results[0];
       this.character.name = this.character.name.replace(/-/g, ' ');
+      this.characterImageUrl = `https://starwars-visualguide.com/assets/img/characters/${this.getCharacterId()}.jpg`;
     } else {
       console.log('Aucun personnage trouvé pour cette recherche');
     }
-  }
+  },
+
+  methods: {
+    getCharacterId() {
+      // Extrait l'ID du personnage à partir de l'URL de l'API
+      const characterUrlParts = this.character.url.split('/');
+      return characterUrlParts[characterUrlParts.length - 2];
+    }
+  },
 }
 
 </script>

@@ -1,15 +1,3 @@
-<script>
-export default {
-  name: 'IndexPage',
-  components: {
-
-  }
-}
-
-
-
-</script>
-
 <template>
   <main>
     <div class="container">
@@ -25,15 +13,37 @@ export default {
     </div>
 
     <div class="row slider1">
+      <slider class="slider--characters"/>
     </div>
-
-    <div class="row slider2">
-    </div>
-
+    
   </main>
 </template>
 
+<script>
+export default {
+  name: 'IndexPage',
+  components: {
+    swiper: {
+      
+    }
+  },
+  data() {
+      return {
+        slide: 0,
+        sliding: null
+      }
+    },
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      }
+    }
+}
 
+</script>
 
 <style scoped>
 
@@ -64,25 +74,6 @@ H2{
   width: 100%;
   height: 100%;
 }
-
-.slider1{
-  background: url('~assets/images/starwars3.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 650px;
-  box-shadow: 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #fff, 0px 0px 50px #474848, 0px 0px 80px #474848, 0px 0px 90px #474848, 0px 0px 100px #474848, 0px 0px 100px #474848;
-}
-
-.slider2{
-  background: url('~assets/images/darkvador.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 650px;
-  box-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 25px #fff, 0px 0px 30px #ffdd00, 0px 0px 40px #ffdd00, 0px 0px 50px #e7b811, 0px 0px 55px #e7b811, 0px 0px 100px #fff;
-}
-
 
 
 .btn-listing-2{
