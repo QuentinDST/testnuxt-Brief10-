@@ -1,5 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: 'static',
+  ssr: false,
   head: {
     title: 'testnuxt',
     meta: [
@@ -30,6 +32,10 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/netlify-files',
+
+    // With options
+    ['@nuxtjs/netlify-files', { /* module options */ }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -48,15 +54,11 @@ export default {
     baseURL: '/',
   },
 
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en'
-    }
-  },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    generate: {
+      dir: 'dist',
+      // autres options de génération
+    }
   },
-
 }

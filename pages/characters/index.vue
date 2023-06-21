@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row text-center mt-5 justify-content-center listing--page">
                 <div class="col-12 mt-5 mb-5">
-                    <H1>CHARACTERS STAR WARS</H1>
+                    <H1>CHARACTERS STAR WARS  !</H1>
                 </div>
                 <div class="col-12 mb-5 d-flex justify-content-center">
                   <Btn class="btn-listing" url="/contact" text="FILTERR BY CATEGORY" />
@@ -48,6 +48,7 @@ export default {
 body{
   background: url('~assets/images/starwars.jpg');
 }
+
 
 H1{
   font-family: 'Poller One';
