@@ -33,15 +33,15 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxtjs/netlify-files',
-
-    // With options
-    ['@nuxtjs/netlify-files', { /* module options */ }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    {
+      icons: false
+    },
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -55,8 +55,12 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    generate: {
+  build:  {
+    build: {
+      babel: {
+        compact: true
+      },
+      generate: {
       dir: 'dist',
       // autres options de génération
     }
