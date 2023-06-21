@@ -13,7 +13,7 @@
         @sliding-end="onSlideEnd"
       >
         <!-- SLIDE 1 -->
-        <b-carousel-slide :img-src="require('~/assets/images/starwars3.jpg')">
+        <b-carousel-slide :img-src="require('~/assets/images/darkvador2.jpg')">
             <h2>CHARACTERS</h2>
         </b-carousel-slide>
   
