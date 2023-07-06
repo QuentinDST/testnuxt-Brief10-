@@ -11,7 +11,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/yoda.jpg' }
     ],
     script: [
       { src: 'https://code.jquery.com/jquery-3.6.0.min.js' }
@@ -37,11 +37,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
+    ['bootstrap-vue/nuxt', { icons: false }],
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
 
@@ -53,14 +50,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    build: {
-      babel: {
-        compact: true
-      },
-      generate: {
-        dir: 'dist',
-        // autres options de génération
-      }
+    babel: {
+      compact: true
     },
+    generate: {
+      dir: 'dist',
+      // autres options de génération
+    }
   }
 }
