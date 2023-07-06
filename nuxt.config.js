@@ -56,6 +56,11 @@ export default {
     generate: {
       dir: 'dist',
       // autres options de génération
+    },
+    extend(config, { isClient }) {
+      if (isClient) {
+        config.performance.maxAssetSize = 1024 * 1024; // Augmenter la taille limite ici (1 MiB dans cet exemple)
+      }
     }
   }
 }
